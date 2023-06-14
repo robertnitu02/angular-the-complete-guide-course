@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'assignment';
+  username = '';
+
+  resetUsername() {
+    if (this.username === '') return; // extra check
+    this.username = '';
+    alert('Username has been reset!');
+  }
 }

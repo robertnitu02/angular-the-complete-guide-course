@@ -1,0 +1,10 @@
+.container {
+  padding: 25px;
+}
+
+button {
+  padding: 5px;
+  border: 2px solid cornflowerblue;
+  background-color: cadetblue;
+  color: white;
+}
