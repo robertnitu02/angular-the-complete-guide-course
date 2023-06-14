@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  padding: 5px;
+  border: 2px solid cornflowerblue;
+  background-color: darkcyan;
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.white-text {
+  color: white;
+}

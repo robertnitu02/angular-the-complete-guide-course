@@ -1,0 +1,13 @@
+<div class="container">
+  <button (click)="addClick()">Display details</button>
+  <p *ngIf="displaySecretIteration % 2 !== 0; else noSecret">{{ displaySecretString }}</p>
+  <ng-template #noSecret>
+    <p></p>
+  </ng-template>
+  <div *ngFor="let log of clickLogs; let i = index">
+    <p *ngIf="i <= 4; else upperFive">{{ log }}</p>
+    <ng-template #upperFive>
+      <p [ngStyle]="{'background-color': 'blue'}" [ngClass]="{'white-text': i > 4}"> {{ log }}</p>
+    </ng-template>
+  </div>
+</div>
