@@ -1,7 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      Assignment 4
+      <app-game-control (emitNumber)="onEmittedNumber($event)"></app-game-control>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div *ngFor="let number of numbersEmitted" class="card-body">
+        <app-odd [number]="number" *ngIf="number % 2 !== 0"></app-odd>
+        <app-even [number]="number" *ngIf="number % 2 === 0"></app-even>
+      </div>
     </div>
   </div>
 </div>
