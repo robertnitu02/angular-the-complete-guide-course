@@ -4,12 +4,16 @@
       <app-game-control (emitNumber)="onEmittedNumber($event)"></app-game-control>
     </div>
   </div>
-  <div class="row">
+  <h2>Odd Numbers</h2>
+  <div class="row playground">
     <div class="col-sm-12">
-      <div *ngFor="let number of numbersEmitted" class="card-body">
-        <app-odd [number]="number" *ngIf="number % 2 !== 0"></app-odd>
-        <app-even [number]="number" *ngIf="number % 2 === 0"></app-even>
-      </div>
+      <app-odd *ngFor="let number of oddNumbersEmitted" [number]="number"></app-odd>
+    </div>
+  </div>
+  <h2>Even Numbers</h2>
+  <div class="row playground">
+    <div class="col-sm-12">
+      <app-even *ngFor="let number of evenNumbersEmitted" [number]="number"></app-even>
     </div>
   </div>
 </div>
