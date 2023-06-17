@@ -1,15 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12" style="padding: 5px">
-      <div class="card" [ngClass]="server.type === 'server' ? 'bg-danger' : 'bg-primary'">
-        <div class="card-header">
-          Type: {{ server.type }}
-        </div>
-        <div class="card-body">
-          <h3>Name: {{ server.name }}</h3>
-          <h3>Content: {{ server.content }}</h3>
-        </div>
+      <div class="panel-heading" #headerDiv>
+        {{ name }}
       </div>
+      <!--      <div class="card" [ngClass]="server.type === 'server' ? 'bg-danger' : 'bg-primary'">-->
+      <!--        <div class="card-header">-->
+      <!--          Type: {{ server.type }}-->
+      <!--        </div>-->
+      <!--        <div class="card-body">-->
+      <!--          <h3>Name: {{ server.name }}</h3>-->
+      <!--          <h3>Content: {{ server.content }}</h3>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <ng-content></ng-content>
     </div>
   </div>
 </div>

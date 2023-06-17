@@ -9,10 +9,19 @@
     <div class="col-sm-12">
       <hr>
       <h1>Servers and Blueprints:</h1>
-      <app-server-element
-        *ngFor="let server of servers"
-        [serverData]="server"
-      ></app-server-element>
+      <button class="btn btn-success" (click)="changeFirstElement()">Change first element name</button>
+      <button class="btn btn-danger" (click)="destroyFirstElement()">Destroy first element</button>
+      <app-server-element *ngFor="let server of servers" [serverData]="server" [name]="server.name">
+        <div class="card" [ngClass]="server.type === 'server' ? 'bg-danger' : 'bg-primary'">
+          <div class="card-header">
+            Type: {{ server.type }}
+          </div>
+          <div class="card-body">
+            <h3>Name: {{ server.name }}</h3>
+            <h3>Content: {{ server.content }}</h3>
+          </div>
+        </div>
+      </app-server-element>
     </div>
   </div>
 </div>

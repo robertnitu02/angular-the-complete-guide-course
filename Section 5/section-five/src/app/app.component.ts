@@ -27,4 +27,14 @@ export class AppComponent {
   onBlueprintCreated(serverData: ServerData) {
     this.servers.push(serverData);
   }
+
+  changeFirstElement() {
+    if (this.servers.length === 0) return;
+    this.servers[0].name = 'Changed!';
+  }
+
+  destroyFirstElement() {
+    if (this.servers.length === 0) return;
+    this.servers.splice(0, 1);
+  }
 }
