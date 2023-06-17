@@ -3,7 +3,8 @@
     <div class="col-sm-3">
       <div class="col-sm-5">
         <label>Name</label>
-        <input type="text" class="form-control" [(ngModel)]="serverName">
+<!--        <input type="text" class="form-control" [(ngModel)]="serverName">-->
+        <input type="text" class="form-control" #serverNameInput>
       </div>
       <div class="col-sm-6">
         <label>Content</label>
@@ -12,11 +13,11 @@
     </div>
     <div class="row" style="padding: 5px">
       <div class="col-xs-12">
-        <button class="btn btn-primary" (click)="createServer()"
-                [disabled]="serverName.length === 0 || serverContent.length === 0">Add to Server
+        <button class="btn btn-primary" (click)="createServer(serverNameInput)"
+                [disabled]="serverContent.length === 0">Add to Server
         </button>
-        <button class="btn btn-primary" (click)="createBlueprint()"
-                [disabled]="serverName.length === 0 || serverContent.length === 0">Add to Blueprint
+        <button class="btn btn-primary" (click)="createBlueprint(serverNameInput)"
+                [disabled]="serverContent.length === 0">Add to Blueprint
         </button>
       </div>
     </div>
