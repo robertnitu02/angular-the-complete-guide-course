@@ -8,16 +8,15 @@
       </div>
       <div class="col-sm-6">
         <label>Content</label>
-        <input type="text" class="form-control" [(ngModel)]="serverContent">
+<!--        <input type="text" class="form-control" [(ngModel)]="serverContent">-->
+        <input type="text" class="form-control" #serverContentInput>
       </div>
     </div>
     <div class="row" style="padding: 5px">
       <div class="col-xs-12">
-        <button class="btn btn-primary" (click)="createServer(serverNameInput)"
-                [disabled]="serverContent.length === 0">Add to Server
+        <button class="btn btn-primary" (click)="createServer(serverNameInput)">Add to Server
         </button>
-        <button class="btn btn-primary" (click)="createBlueprint(serverNameInput)"
-                [disabled]="serverContent.length === 0">Add to Blueprint
+        <button class="btn btn-primary" (click)="createBlueprint(serverNameInput)">Add to Blueprint
         </button>
       </div>
     </div>

@@ -7,5 +7,5 @@ import { ServerData } from "../../shared/server.model";
   styleUrls: ['./server-element.component.css']
 })
 export class ServerElementComponent {
-  @Input('serverData') server: ServerData | undefined = undefined;
+  @Input('serverData') server: ServerData;
 }

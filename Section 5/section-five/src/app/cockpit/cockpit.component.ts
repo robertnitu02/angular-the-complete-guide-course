@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { ServerData } from "../../shared/server.model";
 
 @Component({
@@ -10,29 +10,32 @@ export class CockpitComponent {
   @Output('onServerCreated') serverCreated = new EventEmitter<ServerData>;
   @Output('onBlueprintCreated') blueprintCreated = new EventEmitter<ServerData>;
 
+  @ViewChild('serverContentInput') serverContentInput: ElementRef;
+
   // serverName = '';
-  serverContent = '';
+  // serverContent = '';
 
   createServer(serverNameInput: HTMLInputElement) {
+    console.log(this.serverContentInput.nativeElement.value);
     this.serverCreated.emit({
       type: 'server',
       name: serverNameInput.value,
-      content: this.serverContent
+      content: this.serverContentInput.nativeElement.value
     });
-    this.resetValues();
+    // this.resetValues();
   }
 
   createBlueprint(serverNameInput: HTMLInputElement) {
     this.blueprintCreated.emit({
       type: 'blueprint',
       name: serverNameInput.value,
-      content: this.serverContent
+      content: this.serverContentInput.nativeElement.value
     });
-    this.resetValues();
+    // this.resetValues();
   }
 
-  resetValues() {
-    // this.serverName = '';
-    this.serverContent = '';
-  }
+  // resetValues() {
+  //   this.serverName = '';
+  //   this.serverContent = '';
+  // }
 }
