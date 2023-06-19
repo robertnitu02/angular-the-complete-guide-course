@@ -11,4 +11,9 @@ export class ShoppingListComponent {
     new Ingredient('Apples', 5),
     new Ingredient('Tomatoes', 10),
   ];
+
+  addIngredient(ingredient: Ingredient) {
+    console.log(ingredient);
+    this.ingredients.push(ingredient);
+  }
 }
