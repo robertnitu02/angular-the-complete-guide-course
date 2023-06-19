@@ -5,16 +5,7 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-12" style="border: 2px solid black;">
-    <a *ngFor="let recipe of recipes" href="#" class="list-group-item clearfix">
-      <div class="align-content-start">
-        <h4 class="list-group-item-heading">Recipe Name: {{ recipe.name }}</h4>
-        <p class="list-group-item-info">Description: {{ recipe.description }}</p>
-      </div>
-      <div class="align-content-end">
-        <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-responsive" style="max-height: 50px;">
-      </div>
-      <app-recipe-item></app-recipe-item>
-    </a>
+  <div class="col-xs-12">
+    <app-recipe-item *ngFor="let recipe of recipes" [recipeItem]="recipe"></app-recipe-item>
   </div>
 </div>
