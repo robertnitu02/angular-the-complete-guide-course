@@ -6,6 +6,7 @@ import { BasicHighlightDirective } from "./basic-directive/basic-highlight.direc
 import { BetterHighlightDirective } from './better-directive/better-highlight.directive';
 import { AnotherHighlightDirective } from './another-directive/another-highlight.directive';
 import { DynamicHighlightDirective } from './dynamic-directive/dynamic-highlight.directive';
+import { ElseDirective } from './structural-directive/else.directive';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { DynamicHighlightDirective } from './dynamic-directive/dynamic-highlight
     BetterHighlightDirective,
     AnotherHighlightDirective,
     DynamicHighlightDirective,
+    ElseDirective,
   ],
   imports: [
     BrowserModule
