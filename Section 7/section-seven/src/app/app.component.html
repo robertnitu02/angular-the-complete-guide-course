@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
       <h1>Hello Angular!</h1>
       <h1 appBasicHighlight>Hi, i use basic highlight directive!</h1>
       <h1 appBetterHighlight>Hi, i use better highlight directive!</h1>
@@ -19,6 +19,15 @@
       <h1>Here</h1>
     </div>
     <hr>
-
+    <div class="col-sm-12">
+      <div [ngSwitch]="randomNumber">
+        <h1 *ngSwitchCase="1">I'm number 1</h1>
+        <h1 *ngSwitchCase="2">I'm number 2</h1>
+        <h1 *ngSwitchCase="3">I'm number 3</h1>
+        <h1 *ngSwitchCase="4">I'm number 4</h1>
+        <h1 *ngSwitchCase="5">I'm number 5</h1>
+        <h1 *ngSwitchDefault>Default 0</h1>
+      </div>
+    </div>
   </div>
 </div>
