@@ -1,11 +1,6 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  EventEmitter,
-  Output,
-} from '@angular/core';
-import { Ingredient } from '../../../shared/models/ingredient.model';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+
+import { ShoppingListService } from '../../../shared/services/shopping-list.service';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -16,16 +11,16 @@ export class ShoppingEditComponent {
   @ViewChild('ingredientNameInput') ingredientNameInput: ElementRef;
   @ViewChild('ingredientAmountInput') ingredientAmountInput: ElementRef;
 
-  @Output('onIngredientAdded') ingredientAdded = new EventEmitter<Ingredient>();
+  constructor(private shoppingListService: ShoppingListService) {}
 
   addIngredient() {
-    // console.log(this.ingredientNameInput.nativeElement.value);
-    // console.log(this.ingredientAmountInput.nativeElement.value);
-    this.ingredientAdded.emit(
-      new Ingredient(
-        this.ingredientNameInput.nativeElement.value,
-        this.ingredientAmountInput.nativeElement.value
-      )
-    );
+    const ingredientName = this.ingredientNameInput.nativeElement.value;
+    const ingredientAmount = this.ingredientAmountInput.nativeElement.value;
+    // console.log(
+    //   `ingredientName: ${ingredientName} | ingredientAmount: ${ingredientAmount}`
+    // );
+    if (ingredientName === '' || ingredientAmount === '')
+      return alert('Insert some values!');
+    this.shoppingListService.addIngredient(ingredientName, ingredientAmount);
   }
 }

@@ -1,20 +1,51 @@
-import { Recipe } from '../models/recipe.model';
+import { EventEmitter, Injectable } from '@angular/core';
 
+import { Recipe } from '../models/recipe.model';
+import { Ingredient } from '../models/ingredient.model';
+import { ShoppingListService } from './shopping-list.service';
+
+@Injectable()
 export class RecipeService {
+  private selectedRecipe = new EventEmitter<Recipe>();
+
+  constructor(private shoppingListService: ShoppingListService) {}
+
   private recipes: Recipe[] = [
     new Recipe(
-      'A test recipe',
-      'Simple test recipe only for testing lol',
-      'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_1280.jpg'
+      'Shawarma',
+      'Very popular romanian food',
+      'https://divainbucatarie.ro/wp-content/uploads/2021/06/shaorma-de-pui-facuta-in-casa-diva-in-bucatarie-V.jpg',
+      [
+        new Ingredient('chicken', 2),
+        new Ingredient('fries', 500),
+        new Ingredient('tomato', 10),
+      ]
     ),
     new Recipe(
-      'Another test recipe',
-      'Simple test recipe only for testing lol',
-      'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_1280.jpg'
+      'Burgir',
+      'burgir, burgir, burgir, burgir, burgir, burgir',
+      'https://media.tenor.com/fy5_55bVdT4AAAAd/burgir.gif',
+      [
+        new Ingredient('burgir beef', 500),
+        new Ingredient('tomato', 10),
+        new Ingredient('fries', 500),
+      ]
     ),
   ];
 
   getRecipes() {
     return [...this.recipes];
+  }
+
+  getSelectedRecipe() {
+    return this.selectedRecipe;
+  }
+
+  emitSelectedRecipe(recipe: Recipe) {
+    this.selectedRecipe.emit(recipe);
+  }
+
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.shoppingListService.addIngredients(ingredients);
   }
 }
