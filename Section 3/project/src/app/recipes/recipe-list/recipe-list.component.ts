@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Recipe } from '../../../shared/recipe.model';
+import { Recipe } from '../../../shared/models/recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -8,7 +8,7 @@ import { Recipe } from '../../../shared/recipe.model';
 })
 export class RecipeListComponent {
   @Output('onSelectedRecipe') selectedRecipe = new EventEmitter<Recipe>();
-  
+
   recipes: Recipe[] = [
     new Recipe(
       'A test recipe',
