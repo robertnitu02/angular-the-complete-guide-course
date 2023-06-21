@@ -1,2 +1,13 @@
-<p>User with ID _ID_ loaded.</p>
-<p>User name is _NAME_</p>
+<p>User with ID {{ user.id }} loaded.</p>
+<p>User name is {{ user.name }}</p>
+<ul class="list-group">
+  <li class="list-group-item">
+    <a [routerLink]="['/users', 21, 'Robert']">Load Robert (21)</a>
+  </li>
+  <li class="list-group-item">
+    <a [routerLink]="['/users', 22, 'Anna']">Load Anna (22)</a>
+  </li>
+  <li class="list-group-item">
+    <a [routerLink]="['/users', 23, 'Max']">Load Max (23)</a>
+  </li>
+</ul>
