@@ -2,12 +2,27 @@
 <p>Manage your Servers and Users.</p>
 <div class="row">
   <div class="col-xs-12">
+    <hr>
     <ul class="list-group">
       <li>
         <button class="btn btn-primary" (click)="onLoadServers()">Load Servers</button>
       </li>
       <li>
         <button class="btn btn-primary" (click)="onLoadServer(1)">Load Server 1</button>
+      </li>
+    </ul>
+  </div>
+  <div class="col-xs-12">
+    <hr>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Authenticated: {{ getAuthenticatedStatus() }}</h4>
+      </li>
+      <li>
+        <button class="btn btn-primary" (click)="logIn()">Log In</button>
+      </li>
+      <li>
+        <button class="btn btn-primary" (click)="logOut()">Log Out</button>
       </li>
     </ul>
   </div>
