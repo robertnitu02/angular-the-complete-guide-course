@@ -1,13 +1,14 @@
 <div class="container">
-  <a
-    class="list-group-item clearfix"
-    style="cursor: pointer">
-    <div class="align-content-start">
-      <h4 class="list-group-item-heading">Recipe Name: {{ recipe.name }}</h4>
-      <p class="list-group-item-info">Description: {{ recipe.description }}</p>
-    </div>
-    <div class="align-content-end">
-      <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-responsive" style="max-height: 50px;">
-    </div>
-  </a>
+  <div class="list-group">
+    <a [routerLink]="['/recipes', index]"
+       class="list-group-item list-group-item-action flex-column align-items-start"
+       [routerLinkActive]="'active'"
+       style="cursor: pointer">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Recipe Name: {{ recipe.name }}</h5>
+      </div>
+      <p class="mb-1">Description: {{ recipe.description }}</p>
+      <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-responsive" style="max-height: 60px;">
+    </a>
+  </div>
 </div>
