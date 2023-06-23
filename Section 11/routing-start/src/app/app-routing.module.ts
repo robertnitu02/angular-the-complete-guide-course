@@ -7,17 +7,27 @@ import { UserComponent } from "./users/user/user.component";
 import { ServersComponent } from "./servers/servers.component";
 import { ServerComponent } from "./servers/server/server.component";
 import { EditServerComponent } from "./servers/edit-server/edit-server.component";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+// import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 
 import { AppGuard } from "./app-guard.service";
 import { CanDeactivateGuard } from "./servers/edit-server/can-deactivate-guard.service";
+import { ErrorPageComponent } from "./error-page/error-page.component";
+import { ServerResolver } from "./servers/server/server-resolver.service";
 
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
   {
-    path: 'users', component: UsersComponent, children: [
-      {path: ':id/:name', component: UserComponent}
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    children: [
+      {
+        path: ':id/:name',
+        component: UserComponent
+      }
     ]
   },
   {
@@ -28,7 +38,8 @@ const appRoutes: Routes = [
     children: [
       {
         path: ':id',
-        component: ServerComponent
+        component: ServerComponent,
+        resolve: {server: ServerResolver}
       },
       {
         path: ':id/edit',
@@ -37,11 +48,24 @@ const appRoutes: Routes = [
       },
     ]
   },
-  {path: 'page-not-found', component: PageNotFoundComponent},
-  {path: '**', redirectTo: '/page-not-found', pathMatch: 'full'}
+  // {path: 'page-not-found', component: PageNotFoundComponent},
+  {
+    path: 'page-not-found',
+    component: ErrorPageComponent,
+    data:
+      {
+        message: 'Page not found!'
+      }
+  },
+  {
+    path: '**',
+    redirectTo: '/page-not-found',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
+  // imports: [RouterModule.forRoot(appRoutes, {useHash: true})],
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
