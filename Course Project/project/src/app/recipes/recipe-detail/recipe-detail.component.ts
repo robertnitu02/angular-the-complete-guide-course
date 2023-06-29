@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
-import { Recipe } from '../../../shared/models/recipe.model';
-import { RecipeService } from '../../../shared/services/recipe.service';
+import {Recipe} from '../../../shared/models/recipe.model';
+import {RecipeService} from '../../../shared/services/recipe.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -17,7 +17,8 @@ export class RecipeDetailComponent implements OnInit {
     private recipeService: RecipeService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -32,5 +33,10 @@ export class RecipeDetailComponent implements OnInit {
 
   toEditPage() {
     this.router.navigate(['/recipes', this.recipeId, 'edit']);
+  }
+
+  onDelete() {
+    this.recipeService.deleteRecipe(this.recipeId);
+    this.router.navigate(['/']);
   }
 }
