@@ -1,12 +1,38 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-sm-10 col-md-9 col-sm-offset-1 col-md-offset-2">
+      <button
+        class="btn btn-outline-primary"
+        style="margin-bottom: 10px"
+        (click)="onAddServer()">Add new server
+      </button>
+      <h2>Application Status: <strong>{{ appStatus | async }}</strong></h2>
+      <h2>Find servers by instance Type</h2>
+      <label>Enter server instance type</label>
+      <input type="text" class="form-control" style="margin-bottom: 10px;" [(ngModel)]="filterString">
+      <ul class="list-group content">
+        <li
+          class="list-group-item"
+          *ngFor="let server of servers | filter:filterString"
+          [ngClass]="getStatusClasses(server)">
+          <strong>{{ server.name | shorten:15 }}</strong>
+          | {{ server.instanceType | uppercase }}
+          | {{ server.started | date :'fullDate' }}
+          <div class="col-md-12">
+            <span class="badge">{{ server.status }}</span>
+          </div>
+        </li>
+      </ul>
+      <hr>
       <ul class="list-group">
+        <h2>All servers</h2>
         <li
           class="list-group-item"
           *ngFor="let server of servers"
           [ngClass]="getStatusClasses(server)">
-          <strong>{{ server.name }}</strong> | {{ server.instanceType }} | {{ server.started }}
+          <strong>{{ server.name | shorten:15 }}</strong>
+          | {{ server.instanceType | uppercase }}
+          | {{ server.started | date :'fullDate' }}
           <div class="col-md-12">
             <span class="badge">{{ server.status }}</span>
           </div>

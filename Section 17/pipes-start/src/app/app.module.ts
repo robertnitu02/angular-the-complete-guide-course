@@ -1,13 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {ShortenPipe} from "./shorten.pipe";
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ShortenPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -16,4 +20,5 @@ import { AppComponent } from './app.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

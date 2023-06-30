@@ -1,7 +1,12 @@
 .container {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .badge {
   background-color: grey;
+}
+
+.content {
+  height: 400px;
+  overflow-y: auto;
 }
