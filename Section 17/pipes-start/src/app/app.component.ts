@@ -39,7 +39,10 @@ export class AppComponent {
       started: new Date(2023, 6, 30)
     }
   ];
+
   filterString = '';
+  orderType = 'ascending';
+
   appStatus = new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve('stable');
@@ -57,9 +60,20 @@ export class AppComponent {
   onAddServer() {
     this.servers.push({
       instanceType: 'small',
-      name: 'Test Server',
+      name: 'A test Server',
       status: 'stable',
       started: new Date(2017, 1, 15)
     });
+  }
+
+  changeOrderType() {
+    this.orderType = (this.orderType === 'ascending') ? 'descending' : 'ascending';
+  }
+
+  getOrderTypeClass() {
+    return {
+      'btn-outline-success': this.orderType === 'ascending',
+      'btn-outline-warning': this.orderType === 'descending',
+    };
   }
 }

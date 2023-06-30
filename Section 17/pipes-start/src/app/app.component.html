@@ -25,13 +25,33 @@
       </ul>
       <hr>
       <ul class="list-group">
+        <h2>Ordered servers</h2>
+        <button
+          class="btn col-3"
+          style="margin-bottom: 10px"
+          [ngClass]="getOrderTypeClass()"
+          (click)="changeOrderType()">Order type: {{ orderType }}</button>
+        <li
+          class="list-group-item"
+          *ngFor="let server of servers | order:orderType"
+          [ngClass]="getStatusClasses(server)">
+          <strong>{{ server.name }}</strong>
+          | {{ server.instanceType | uppercase }}
+          | {{ server.started | date :'fullDate' }}
+          <div class="col-md-12">
+            <span class="badge">{{ server.status }}</span>
+          </div>
+        </li>
+      </ul>
+      <hr>
+      <ul class="list-group">
         <h2>All servers</h2>
         <li
           class="list-group-item"
           *ngFor="let server of servers"
           [ngClass]="getStatusClasses(server)">
           <strong>{{ server.name | shorten:15 }}</strong>
-          | {{ server.instanceType | uppercase }}
+          | {{ server.instanceType | reverseString | uppercase }}
           | {{ server.started | date :'fullDate' }}
           <div class="col-md-12">
             <span class="badge">{{ server.status }}</span>
