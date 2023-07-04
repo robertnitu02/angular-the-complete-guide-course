@@ -57,7 +57,12 @@
           <p> {{ post.content }}</p>
         </li>
       </ul>
-      <div *ngIf="isFetching" class="spinner-grow" role="status">
+      <div *ngIf="isFetching && !error" class="spinner-grow" role="status">
+      </div>
+      <div class="alert alert-danger" *ngIf="error">
+        <h2>Error Occurred!</h2>
+        <p>{{ error }}</p>
+        <button class="btn btn-outline-danger" (click)="onHandlerError()">ok!</button>
       </div>
     </div>
   </div>
