@@ -12,28 +12,34 @@ export class RecipeService {
   constructor(private shoppingListService: ShoppingListService) {
   }
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Shawarma',
-      'Very popular romanian food',
-      'https://divainbucatarie.ro/wp-content/uploads/2021/06/shaorma-de-pui-facuta-in-casa-diva-in-bucatarie-V.jpg',
-      [
-        new Ingredient('chicken', 2),
-        new Ingredient('fries', 500),
-        new Ingredient('tomato', 10),
-      ]
-    ),
-    new Recipe(
-      'Burgir',
-      'burgir, burgir, burgir, burgir, burgir, burgir',
-      'https://media.tenor.com/fy5_55bVdT4AAAAd/burgir.gif',
-      [
-        new Ingredient('burgir beef', 500),
-        new Ingredient('tomato', 10),
-        new Ingredient('fries', 500),
-      ]
-    ),
-  ];
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     'Shawarma',
+  //     'Very popular romanian food',
+  //     'https://divainbucatarie.ro/wp-content/uploads/2021/06/shaorma-de-pui-facuta-in-casa-diva-in-bucatarie-V.jpg',
+  //     [
+  //       new Ingredient('chicken', 2),
+  //       new Ingredient('fries', 500),
+  //       new Ingredient('tomato', 10),
+  //     ]
+  //   ),
+  //   new Recipe(
+  //     'Burgir',
+  //     'burgir, burgir, burgir, burgir, burgir, burgir',
+  //     'https://media.tenor.com/fy5_55bVdT4AAAAd/burgir.gif',
+  //     [
+  //       new Ingredient('burgir beef', 500),
+  //       new Ingredient('tomato', 10),
+  //       new Ingredient('fries', 500),
+  //     ]
+  //   ),
+  // ];
+  private recipes: Recipe[] = [];
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.updateRecipes();
+  }
 
   getRecipes() {
     return [...this.recipes];
@@ -49,16 +55,20 @@ export class RecipeService {
 
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
-    this.recipesChanged.next([...this.recipes]);
+    this.updateRecipes();
   }
 
   updateRecipe(index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
-    this.recipesChanged.next([...this.recipes]);
+    this.updateRecipes();
   }
 
   deleteRecipe(recipeId: number) {
     this.recipes.splice(recipeId, 1);
+    this.updateRecipes();
+  }
+
+  private updateRecipes() {
     this.recipesChanged.next([...this.recipes]);
   }
 }
