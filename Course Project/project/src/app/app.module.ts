@@ -20,7 +20,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RecipeService} from "../shared/services/recipe.service";
 import {DataStorageService} from "../shared/services/data-storage.service";
 import {RecipeResolverService} from "../shared/services/recipe-resolver.service";
-
+import {AuthComponent} from "./auth/auth/auth.component";
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import {RecipeResolverService} from "../shared/services/recipe-resolver.service"
     ShoppingEditComponent,
     DropdownDirective,
     SelectRecipeComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
