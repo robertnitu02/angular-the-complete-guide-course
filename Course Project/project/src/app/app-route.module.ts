@@ -12,7 +12,7 @@ import {AuthComponent} from "./auth/auth/auth.component";
 const appRoute: Routes = [
   {
     path: '',
-    redirectTo: '/recipes',
+    redirectTo: '/shopping-list',
     pathMatch: 'full',
   },
   {
