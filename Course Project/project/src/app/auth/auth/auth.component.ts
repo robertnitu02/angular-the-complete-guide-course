@@ -27,6 +27,20 @@ export class AuthComponent {
 
     this.isLoading = true;
     this.error = null;
+
+    let userData: {
+      email: string,
+      id: string,
+      _token: string,
+      _tokenExpirationDate: string
+    } = JSON.parse(localStorage.getItem('userData'));
+
+    if (userData) {
+      this.isLoading = false;
+      this.error = 'You already logged!';
+      return;
+    }
+
     const email = form.value.email;
     const password = form.value.password;
 
