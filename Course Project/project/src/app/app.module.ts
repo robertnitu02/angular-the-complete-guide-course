@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
@@ -20,7 +20,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RecipeService} from "../shared/services/recipe.service";
 import {DataStorageService} from "../shared/services/data-storage.service";
 import {RecipeResolverService} from "../shared/services/recipe-resolver.service";
-
+import {AuthComponent} from "./auth/auth/auth.component";
+import {AuthService} from "../shared/services/auth.service";
+import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner/loading-spinner.component";
+import {AuthInterceptorService} from "../shared/services/auth-interceptor.service";
+import {AuthGuard} from "../shared/guards/auth.guard";
 
 @NgModule({
   declarations: [
@@ -34,7 +38,9 @@ import {RecipeResolverService} from "../shared/services/recipe-resolver.service"
     ShoppingEditComponent,
     DropdownDirective,
     SelectRecipeComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,14 @@ import {RecipeResolverService} from "../shared/services/recipe-resolver.service"
     ShoppingListService,
     RecipeService,
     DataStorageService,
-    RecipeResolverService
+    RecipeResolverService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent],
 })
