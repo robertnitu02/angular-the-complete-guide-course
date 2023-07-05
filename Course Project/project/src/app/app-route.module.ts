@@ -7,8 +7,9 @@ import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.compo
 import {SelectRecipeComponent} from './recipes/select-recipe/select-recipe.component';
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {RecipeResolverService} from "../shared/services/recipe-resolver.service";
-import {AuthComponent} from "./auth/auth/auth.component";
+import {AuthComponent} from "./auth/auth.component";
 import {AuthGuard} from "../shared/guards/auth.guard";
+import {ForgotPasswordComponent} from "./auth/forgot-password/forgot-password.component";
 
 const appRoute: Routes = [
   {
@@ -48,6 +49,10 @@ const appRoute: Routes = [
   {
     path: 'auth',
     component: AuthComponent
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
   }
 ];
 

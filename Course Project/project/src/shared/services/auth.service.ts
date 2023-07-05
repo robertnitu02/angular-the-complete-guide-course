@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, tap} from "rxjs/operators";
-import {BehaviorSubject, throwError} from "rxjs";
+import {BehaviorSubject, Subject, throwError} from "rxjs";
 import {User} from "../models/user.model";
 import {Router} from "@angular/router";
 
@@ -89,6 +89,17 @@ export class AuthService {
     this.tokenExpirationTimer = null;
   }
 
+  recoveryPassword(email: string) {
+    return this.http.post<{
+      email: string
+    }>('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCWdz4AkgO66o6GYNZZXF1RYc3CzVt6S1k',
+      {
+        requestType: 'PASSWORD_RESET',
+        email: email
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleAuthentication(email: string, id: string, token: string, expiresIn: number) {
     const expirationDate = new Date(new Date().getTime() + (expiresIn * 1000));
     const user = new User(email, id, token, expirationDate);
@@ -96,6 +107,7 @@ export class AuthService {
     this.autoLogOutUser(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
   }
+
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
@@ -106,7 +118,7 @@ export class AuthService {
         errorMessage = 'This email already exists!';
         break;
       case 'EMAIL_NOT_FOUND':
-        errorMessage = 'This email not found!';
+        errorMessage = 'There is no user record corresponding to this identifier. The user may have been deleted.';
         break;
       case 'INVALID_PASSWORD':
         errorMessage = 'Invalid password!';

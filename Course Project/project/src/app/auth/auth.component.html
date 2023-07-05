@@ -36,9 +36,16 @@
                 style="margin-right: 10px"
                 type="submit"
                 [disabled]="!authForm.valid">{{ isLoginMode ? 'Login' : 'Sign Up' }}</button>
-        <button class="btn btn-outline-primary col" (click)="onSwitchMode()"
-                type="button">Switch
-          to {{ !isLoginMode ? 'Login' : 'Sign Up' }}</button>
+        <button class="btn btn-outline-primary col"
+                style="margin-right: 10px"
+                (click)="onSwitchMode()"
+                type="button"> Switch to {{ !isLoginMode ? 'Login' : 'Sign Up' }}
+        </button>
+        <button class="btn btn-outline-dark col"
+                type="button"
+                (click)="onForgotPassword()"
+                *ngIf="isLoginMode">Forgot password?
+        </button>
       </div>
     </form>
   </div>

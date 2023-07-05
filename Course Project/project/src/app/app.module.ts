@@ -20,11 +20,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RecipeService} from "../shared/services/recipe.service";
 import {DataStorageService} from "../shared/services/data-storage.service";
 import {RecipeResolverService} from "../shared/services/recipe-resolver.service";
-import {AuthComponent} from "./auth/auth/auth.component";
+import {AuthComponent} from "./auth/auth.component";
 import {AuthService} from "../shared/services/auth.service";
 import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner/loading-spinner.component";
 import {AuthInterceptorService} from "../shared/services/auth-interceptor.service";
 import {AuthGuard} from "../shared/guards/auth.guard";
+import {ForgotPasswordComponent} from "./auth/forgot-password/forgot-password.component";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {AuthGuard} from "../shared/guards/auth.guard";
     RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

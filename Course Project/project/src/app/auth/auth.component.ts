@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NgForm} from "@angular/forms";
 
-import {AuthResponseData, AuthService} from "../../../shared/services/auth.service";
+import {AuthResponseData, AuthService} from "../../shared/services/auth.service";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 
@@ -65,5 +65,9 @@ export class AuthComponent {
       });
 
     form.reset();
+  }
+
+  onForgotPassword() {
+    this.router.navigate(['/forgot-password']);
   }
 }
