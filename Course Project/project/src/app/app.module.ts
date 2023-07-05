@@ -24,6 +24,7 @@ import {AuthComponent} from "./auth/auth/auth.component";
 import {AuthService} from "../shared/services/auth.service";
 import {LoadingSpinnerComponent} from "../shared/loading-spinner/loading-spinner/loading-spinner.component";
 import {AuthInterceptorService} from "../shared/services/auth-interceptor.service";
+import {AuthGuard} from "../shared/guards/auth.guard";
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {AuthInterceptorService} from "../shared/services/auth-interceptor.servic
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent],
 })
