@@ -70,4 +70,8 @@ export class AuthComponent {
   onForgotPassword() {
     this.router.navigate(['/forgot-password']);
   }
+
+  onHandleAlert() {
+    this.error = null;
+  }
 }
