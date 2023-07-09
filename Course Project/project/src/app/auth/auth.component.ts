@@ -26,10 +26,7 @@ export class AuthComponent implements OnDestroy {
 
   // error: string = null;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnDestroy() {
@@ -98,12 +95,12 @@ export class AuthComponent implements OnDestroy {
   // }
 
   showErrorAlert(message: string) {
-    const alertComponentFactory =
-      this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
+    // const alertComponentFactory =
+    //   this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
     const hostViewContainerRef = this.alertHost.viewContainerRef;
     hostViewContainerRef.clear();
 
-    const componentRef = hostViewContainerRef.createComponent(alertComponentFactory);
+    const componentRef = hostViewContainerRef.createComponent(AlertComponent);
     componentRef.instance.message = message;
     this.alertSubscription = componentRef.instance.close.subscribe(() => {
       this.alertSubscription.unsubscribe();
