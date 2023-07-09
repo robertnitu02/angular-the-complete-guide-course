@@ -1,20 +1,40 @@
-import {Component} from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver, OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import {NgForm} from "@angular/forms";
 
-import {AuthResponseData, AuthService} from "../../shared/services/auth.service";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {Router} from "@angular/router";
+
+import {AuthResponseData, AuthService} from "../../shared/services/auth.service";
+import {AlertComponent} from "../../shared/alert/alert.component";
+import {PlaceholderDirective} from "../../shared/directives/placeholder.directive";
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html'
 })
-export class AuthComponent {
+export class AuthComponent implements OnDestroy {
+  @ViewChild(PlaceholderDirective) alertHost: PlaceholderDirective;
+
+  private alertSubscription: Subscription;
+
   isLoginMode = true;
   isLoading = false;
-  error: string = null;
 
-  constructor(private authService: AuthService, private router: Router) {
+  // error: string = null;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private componentFactoryResolver: ComponentFactoryResolver) {
+  }
+
+  ngOnDestroy() {
+    if (this.alertSubscription)
+      this.alertSubscription.unsubscribe();
   }
 
   onSwitchMode() {
@@ -26,7 +46,7 @@ export class AuthComponent {
     // console.log(form.value);
 
     this.isLoading = true;
-    this.error = null;
+    // this.error = null;
 
     let userData: {
       email: string,
@@ -37,7 +57,8 @@ export class AuthComponent {
 
     if (userData) {
       this.isLoading = false;
-      this.error = 'You already logged!';
+      // this.error = 'You already logged!';
+      this.showErrorAlert('You already logged!');
       return;
     }
 
@@ -56,11 +77,12 @@ export class AuthComponent {
       .subscribe((resData) => {
         console.log(resData);
         this.isLoading = false;
-        this.error = null;
+        // this.error = null;
         this.router.navigate(['/recipes']);
       }, (errorMessage) => {
         console.log(errorMessage);
-        this.error = errorMessage;
+        // this.error = errorMessage;
+        this.showErrorAlert(errorMessage);
         this.isLoading = false;
       });
 
@@ -71,7 +93,21 @@ export class AuthComponent {
     this.router.navigate(['/forgot-password']);
   }
 
-  onHandleAlert() {
-    this.error = null;
+  // onHandleAlert() {
+  //   this.error = null;
+  // }
+
+  showErrorAlert(message: string) {
+    const alertComponentFactory =
+      this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
+    const hostViewContainerRef = this.alertHost.viewContainerRef;
+    hostViewContainerRef.clear();
+
+    const componentRef = hostViewContainerRef.createComponent(alertComponentFactory);
+    componentRef.instance.message = message;
+    this.alertSubscription = componentRef.instance.close.subscribe(() => {
+      this.alertSubscription.unsubscribe();
+      hostViewContainerRef.clear();
+    });
   }
 }

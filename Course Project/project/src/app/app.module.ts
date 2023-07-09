@@ -27,6 +27,7 @@ import {AuthInterceptorService} from "../shared/services/auth-interceptor.servic
 import {AuthGuard} from "../shared/guards/auth.guard";
 import {ForgotPasswordComponent} from "./auth/forgot-password/forgot-password.component";
 import {AlertComponent} from "../shared/alert/alert.component";
+import {PlaceholderDirective} from "../shared/directives/placeholder.directive";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {AlertComponent} from "../shared/alert/alert.component";
     AuthComponent,
     LoadingSpinnerComponent,
     ForgotPasswordComponent,
-    AlertComponent
+    AlertComponent,
+    PlaceholderDirective
   ],
   imports: [
     BrowserModule,

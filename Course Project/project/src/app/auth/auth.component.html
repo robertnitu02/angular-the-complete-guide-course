@@ -1,3 +1,4 @@
+<ng-template appPlaceholder></ng-template>
 <div class="row">
   <div class="col-xs-12 col-md-6 offset-3">
     <div *ngIf="isLoading" style="text-align: center;">
@@ -6,7 +7,7 @@
     <!--    <div class="alert alert-danger" *ngIf="error">-->
     <!--      <p>{{ error }}</p>-->
     <!--    </div>-->
-    <app-alert [alertMessage]="error" *ngIf="error" (click)="onHandleAlert()"></app-alert>
+    <!--    <app-alert [alertMessage]="error" *ngIf="error" (click)="onHandleAlert()"></app-alert>-->
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
       <div class="form-group">
         <label for="email">E-Mail</label>
