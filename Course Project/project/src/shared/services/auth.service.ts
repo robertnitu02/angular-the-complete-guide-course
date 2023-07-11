@@ -5,6 +5,8 @@ import {BehaviorSubject, Subject, throwError} from "rxjs";
 import {User} from "../models/user.model";
 import {Router} from "@angular/router";
 
+import {environment} from "../../environments/environment";
+
 export interface AuthResponseData {
   kind: string;
   idToken: string;
@@ -25,7 +27,7 @@ export class AuthService {
   }
 
   signUp(email: string, password: string) {
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCWdz4AkgO66o6GYNZZXF1RYc3CzVt6S1k',
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseApiKey,
       {
         email: email,
         password: password,
@@ -39,7 +41,7 @@ export class AuthService {
   }
 
   logIn(email: string, password: string) {
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWdz4AkgO66o6GYNZZXF1RYc3CzVt6S1k',
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseApiKey,
       {
         email: email,
         password: password,
@@ -92,7 +94,7 @@ export class AuthService {
   recoveryPassword(email: string) {
     return this.http.post<{
       email: string
-    }>('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCWdz4AkgO66o6GYNZZXF1RYc3CzVt6S1k',
+    }>('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=' + environment.firebaseApiKey,
       {
         requestType: 'PASSWORD_RESET',
         email: email
