@@ -1,0 +1,28 @@
+.app {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  margin-top: 50px;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+
+  .text-container {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .actions-container {
+    display: flex;
+    justify-content: center;
+
+    .red {
+      margin-right: 10px;
+      color: red;
+    }
+
+    .blue {
+      margin-right: 10px;
+      color: blue;
+    }
+  }
+}
